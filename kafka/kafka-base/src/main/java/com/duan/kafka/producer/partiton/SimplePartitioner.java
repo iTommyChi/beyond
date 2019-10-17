@@ -2,8 +2,8 @@ package com.duan.kafka.producer.partiton;
 
 import kafka.producer.Partitioner;
 import kafka.utils.VerifiableProperties;
- 
-public class SimplePartitioner implements Partitioner {
+
+public class SimplePartitioner implements Partitioner{
     public SimplePartitioner (VerifiableProperties props) {
  
     }
@@ -17,5 +17,5 @@ public class SimplePartitioner implements Partitioner {
         }
        return partition;
   }
- 
+
 }

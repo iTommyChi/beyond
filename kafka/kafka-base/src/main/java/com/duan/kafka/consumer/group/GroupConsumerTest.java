@@ -1,9 +1,11 @@
 package com.duan.kafka.consumer.group;
 
+
+ 
 import kafka.consumer.ConsumerConfig;
 import kafka.consumer.KafkaStream;
 import kafka.javaapi.consumer.ConsumerConnector;
- 
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -69,7 +71,8 @@ public class GroupConsumerTest extends Thread {
 			System.out.println("Please assign partition number.");
 		}
 		
-        String zooKeeper = "10.206.216.13:12181,10.206.212.14:12181,10.206.209.25:12181";
+        //String zooKeeper = "10.206.216.13:12181,10.206.212.14:12181,10.206.209.25:12181";
+        String zooKeeper = "duan1:2181,duan2:2181,duan3:2181";
         String groupId = "jikegrouptest";
         String topic = "jiketest";
         int threads = Integer.parseInt(args[0]);
