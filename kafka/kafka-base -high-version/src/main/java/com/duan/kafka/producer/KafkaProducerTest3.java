@@ -8,7 +8,7 @@ import org.apache.kafka.common.serialization.StringSerializer;
 import java.util.Properties;
 
 /**
- * 测试消费者poll的数据业务处理时间超过kafka的max.poll.interval.ms时候，会发生什么事情
+ * 演示自动提交出现数据丢失的现象
  */
 public class KafkaProducerTest3 {
     //http://kafka.apache.org/23/javadoc/index.html?org/apache/kafka/clients/producer/KafkaProducer.html
