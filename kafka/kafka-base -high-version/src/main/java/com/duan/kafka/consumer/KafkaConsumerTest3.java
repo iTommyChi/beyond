@@ -8,7 +8,11 @@ import java.time.Duration;
 import java.util.Arrays;
 import java.util.Properties;
 
-public class KafkaConsumerTest {
+
+/**
+ * 测试消费者poll的数据业务处理时间超过kafka的max.poll.interval.ms时候，会发生什么事情
+ */
+public class KafkaConsumerTest3 {
 
 
     public static void main(String[] args) {
@@ -19,12 +23,23 @@ public class KafkaConsumerTest {
         props.setProperty("auto.commit.interval.ms", "1000");
         props.setProperty("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
         props.setProperty("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
+
+        //测试消费者poll的数据业务处理时间超过kafka的max.poll.interval.ms时候，会发生什么事情--start
+        props.setProperty("max.poll.interval.ms", "1000");
+        //测试消费者poll的数据业务处理时间超过kafka的max.poll.interval.ms时候，会发生什么事情--end
+
+
         KafkaConsumer<String, String> consumer = new KafkaConsumer<>(props);
         consumer.subscribe(Arrays.asList("bar"));
         while (true) {
             ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(100));
             for (ConsumerRecord<String, String> record : records){
                 System.out.printf("offset = %d, key = %s, value = %s%n", record.offset(), record.key(), record.value());
+                /*try {
+                    Thread.sleep(1500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }*/
             }
         }
     }

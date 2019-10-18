@@ -7,7 +7,10 @@ import org.apache.kafka.common.serialization.StringSerializer;
 
 import java.util.Properties;
 
-public class KafkaProducerTest {
+/**
+ * 测试消费者poll的数据业务处理时间超过kafka的max.poll.interval.ms时候，会发生什么事情
+ */
+public class KafkaProducerTest3 {
     //http://kafka.apache.org/23/javadoc/index.html?org/apache/kafka/clients/producer/KafkaProducer.html
 
     public static void main(String[] args) {
@@ -22,7 +25,7 @@ public class KafkaProducerTest {
         try {
             producer.beginTransaction();
             int j = 0;
-            for (int i = 0; i < 100; i++) {
+            for (int i = 0; i < 10000; i++) {
                 producer.send(new ProducerRecord<>("bar", Integer.toString(i), "hello--"+Integer.toString(i)));
                 j++;
                 System.out.println("我是里："+i);
